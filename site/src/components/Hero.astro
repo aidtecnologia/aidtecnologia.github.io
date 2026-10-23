@@ -1,0 +1,67 @@
+---
+import { projects } from '../data/projects';
+import { site } from '../data/site';
+
+const years = new Date().getFullYear() - site.startYear;
+---
+
+<section class="hero" id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Desenvolvimento de software sob medida</p>
+        <h1>
+          Sistemas, apps e <span class="gradient">inteligência artificial</span> para o seu negócio.
+        </h1>
+        <p class="lead">
+          Da ideia ao deploy: projetamos, construímos e evoluímos produtos digitais com foco em
+          resultado, performance e experiência de uso.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+          <a class="btn btn-ghost" href="#contato">Falar sobre um projeto</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="mock">
+          <div class="mock-bar">
+            <i></i><i></i><i></i>
+            <span>aidtecnologia</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-lines">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mock-cta"></div>
+            <div class="mock-grid">
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+            </div>
+          </div>
+        </div>
+        <span class="float-pill pill-a">Kotlin · Compose</span>
+        <span class="float-pill pill-b">React · Firebase</span>
+        <span class="float-pill pill-c">IA aplicada</span>
+      </div>
+    </div>
+
+    <dl class="stats">
+      <div>
+        <dt>{years}+ anos</dt>
+        <dd>construindo software</dd>
+      </div>
+      <div>
+        <dt>{projects.length} projetos</dt>
+        <dd>em produção e evolução</dd>
+      </div>
+      <div>
+        <dt>Web · Mobile · IA</dt>
+        <dd>stack completa</dd>
+      </div>
+    </dl>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+const services = [
+  {
+    title: 'Sistemas web e SaaS',
+    description:
+      'Painéis, ERPs, PDVs e plataformas sob medida — do modelo de dados à interface — prontos para operar e escalar.',
+    items: ['React', 'Angular', 'Node.js', 'Java', 'PostgreSQL'],
+    icon: 'layers',
+    accent: 'blue',
+  },
+  {
+    title: 'Apps Android',
+    description:
+      'Aplicativos nativos com Kotlin e Jetpack Compose, com uso de câmera, processamento local e integração com serviços em nuvem.',
+    items: ['Kotlin', 'Compose', 'CameraX', 'Firebase'],
+    icon: 'phone',
+    accent: 'green',
+  },
+  {
+    title: 'IA e automação',
+    description:
+      'LLMs, visão computacional e automações que removem trabalho manual e criam novos produtos — sempre com validação humana no fluxo.',
+    items: ['LLMs', 'OpenCV', 'Python', 'Playwright'],
+    icon: 'spark',
+    accent: 'amber',
+  },
+];
+---
+
+<section class="section" id="servicos">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="eyebrow">Serviços</p>
+      <h2>O que construímos</h2>
+      <p class="section-sub">
+        Escolhemos a tecnologia pelo problema, não o contrário. Cada projeto recebe escopo claro,
+        entregas incrementais e código de fácil manutenção.
+      </p>
+    </header>
+
+    <div class="services">
+      {
+        services.map((service) => (
+          <article class:list={['service', 'reveal', `service--${service.accent}`]}>
+            <span class="service-icon" aria-hidden="true">
+              {service.icon === 'layers' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+                  <path d="m3 12 9 5 9-5" />
+                  <path d="m3 16 9 5 9-5" />
+                </svg>
+              )}
+              {service.icon === 'phone' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
+                  <path d="M11 18.5h2" />
+                </svg>
+              )}
+              {service.icon === 'spark' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8" />
+                  <circle cx="12" cy="12" r="2.5" />
+                </svg>
+              )}
+            </span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <ul>
+              {service.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

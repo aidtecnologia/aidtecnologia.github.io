@@ -1,0 +1,88 @@
+---
+import { categoryLabels, projects } from '../data/projects';
+
+const categories = Object.entries(categoryLabels) as [keyof typeof categoryLabels, string][];
+---
+
+<section class="section section-alt" id="projetos">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="eyebrow">Projetos</p>
+      <h2>Produtos que já colocamos no ar</h2>
+      <p class="section-sub">
+        Uma seleção de sistemas, aplicativos e experimentos desenvolvidos pela AID.
+      </p>
+    </header>
+
+    <div class="filters" role="group" aria-label="Filtrar projetos por categoria">
+      <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">
+        Todos
+      </button>
+      {
+        categories.map(([key, label]) => (
+          <button class="filter" type="button" data-filter={key} aria-pressed="false">
+            {label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="projects">
+      {
+        projects.map((project) => (
+          <article
+            class:list={['project', 'reveal', `accent-${project.categories[0]}`]}
+            data-category={project.categories.join(' ')}
+          >
+            <div class="project-top">
+              <span class="project-tag">
+                {project.categories.map((c) => categoryLabels[c]).join(' · ')}
+              </span>
+              <span class="project-year">{project.year}</span>
+            </div>
+            <h3>{project.name}</h3>
+            <p>{project.description}</p>
+            <ul class="tags">
+              {project.stack.map((tech) => <li>{tech}</li>)}
+            </ul>
+            {project.url && (
+              <a class="project-link" href={project.url} target="_blank" rel="noopener">
+                {project.linkLabel ?? 'Ver projeto'} <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('.filter');
+  const cards = document.querySelectorAll<HTMLElement>('.project');
+
+  filters.forEach((button) => {
+    button.addEventListener('click', () => {
+      filters.forEach((other) => {
+        const active = other === button;
+        other.classList.toggle('is-active', active);
+        other.setAttribute('aria-pressed', String(active));
+      });
+
+      const filter = button.dataset.filter;
+      cards.forEach((card) => {
+        const categories = card.dataset.category?.split(' ') ?? [];
+        const show = filter === 'all' || categories.includes(filter ?? '');
+        card.classList.toggle('is-hidden', !show);
+      });
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('.project').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+    });
+  });
+</script>

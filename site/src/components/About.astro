@@ -1,0 +1,57 @@
+---
+import { site } from '../data/site';
+
+const stack = [
+  'Kotlin / Jetpack Compose',
+  'React / Angular / TypeScript',
+  'Node.js / Java / Python',
+  'Firebase / PostgreSQL',
+  'LLMs / visão computacional',
+  'CI/CD / GitHub Actions',
+];
+
+const steps = [
+  { title: 'Diagnóstico', text: 'Entendemos o problema e o contexto antes de escrever código.' },
+  { title: 'Protótipo', text: 'Validamos o fluxo principal com algo navegável.' },
+  { title: 'Entrega', text: 'Desenvolvimento em ciclos curtos, com revisão a cada etapa.' },
+  { title: 'Evolução', text: 'Monitoramento, melhorias e novas funcionalidades.' },
+];
+---
+
+<section class="section" id="sobre">
+  <div class="container about">
+    <div class="about-copy reveal">
+      <p class="eyebrow">Sobre</p>
+      <h2>Tecnologia com proximidade</h2>
+      <p>
+        A AID Tecnologia é um estúdio de desenvolvimento de software que atua do levantamento de
+        requisitos à operação. Trabalhamos com projetos próprios e sob demanda, sempre com
+        comunicação direta e entregas incrementais.
+      </p>
+      <p>
+        Nossa stack cobre front-end, back-end, mobile nativo e inteligência artificial — escolhendo
+        a ferramenta certa para cada problema, sem inflar o escopo.
+      </p>
+      <ul class="tech-list">
+        {stack.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+
+    <aside class="about-card reveal">
+      <h3>Como trabalhamos</h3>
+      <ol class="steps">
+        {
+          steps.map((step) => (
+            <li>
+              <div>
+                <strong>{step.title}</strong>
+                <span>{step.text}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="about-meta">{site.location}</p>
+    </aside>
+  </div>
+</section>

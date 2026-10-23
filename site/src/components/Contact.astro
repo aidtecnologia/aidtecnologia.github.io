@@ -1,0 +1,23 @@
+---
+import { site, whatsappUrl } from '../data/site';
+---
+
+<section class="section cta-section" id="contato">
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <p class="eyebrow">Contato</p>
+        <h2>Tem uma ideia ou um sistema para evoluir?</h2>
+        <p>
+          Conte o que você precisa. Respondemos com um caminho técnico e uma estimativa inicial.
+        </p>
+      </div>
+      <div class="cta-actions">
+        {/* TODO: substituir pelo e-mail definitivo */}
+        <a class="btn btn-primary" href={`mailto:${site.email}`}>Enviar e-mail</a>
+        {/* TODO: substituir pelo número de WhatsApp definitivo em src/data/site.ts */}
+        <a class="btn btn-ghost" href={whatsappUrl} target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>

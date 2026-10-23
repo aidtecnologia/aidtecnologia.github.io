@@ -1,0 +1,33 @@
+---
+import { navLinks, site } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#top" aria-label={`${site.name}, início`}>
+      <img
+        class="brand-mark"
+        src={`${import.meta.env.BASE_URL}logo-aid.png`}
+        alt=""
+        width="38"
+        height="38"
+      />
+      <span class="brand-name">Tecnologia</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav"
+      aria-label="Abrir menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="nav" aria-label="Principal">
+      {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+      <a class="nav-cta" href="#contato">Falar com a gente</a>
+    </nav>
+  </div>
+</header>
