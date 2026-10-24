@@ -540,8 +540,36 @@ p {
   --card: var(--red);
 }
 
-.float-pill {
+/* Pills: duas colunas, alinhadas ao mock e distribuídas no mesmo ritmo vertical */
+
+.mock-shell {
+  position: relative;
+  width: 100%;
+}
+
+.pill-col {
   position: absolute;
+  top: 40px;
+  bottom: 0;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.pill-col--left {
+  right: calc(100% - var(--pill-inset, 158px));
+  align-items: flex-end;
+}
+
+.pill-col--right {
+  left: calc(100% - var(--pill-inset, 158px));
+  align-items: flex-start;
+}
+
+.float-pill {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -554,7 +582,13 @@ p {
   font-weight: 500;
   color: var(--text);
   box-shadow: 0 16px 30px -18px rgba(0, 0, 0, 0.9);
-  animation: float 7s ease-in-out infinite;
+  rotate: var(--rot, 0deg);
+  animation: float var(--dur, 7s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.pill-col--right .float-pill {
+  rotate: calc(var(--rot, 0deg) * -1);
 }
 
 .float-pill::before {
@@ -565,24 +599,32 @@ p {
   background: var(--pill, var(--blue));
 }
 
-.pill-a {
-  top: 8%;
-  left: -6%;
-  --pill: var(--green);
-}
-
-.pill-b {
-  top: 46%;
-  right: -7%;
+.pill--r0 {
   --pill: var(--blue);
-  animation-delay: -2s;
+  --rot: 1.5deg;
+  --delay: 0s;
+  --dur: 7s;
 }
 
-.pill-c {
-  bottom: 4%;
-  left: 6%;
+.pill--r1 {
+  --pill: var(--green);
+  --rot: -1.5deg;
+  --delay: -1.8s;
+  --dur: 8s;
+}
+
+.pill--r2 {
   --pill: var(--amber);
-  animation-delay: -4s;
+  --rot: 1deg;
+  --delay: -3.6s;
+  --dur: 7.5s;
+}
+
+.pill--r3 {
+  --pill: var(--red);
+  --rot: -1deg;
+  --delay: -5.4s;
+  --dur: 8.5s;
 }
 
 @keyframes float {
@@ -1175,6 +1217,24 @@ p {
 }
 
 /* ---------- Responsive ---------- */
+
+@media (max-width: 1140px) {
+  .mock-shell {
+    --pill-inset: 138px;
+  }
+
+  .float-pill {
+    padding: 7px 12px;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Sem espaço para as colunas flutuarem sem encostar na borda. */
+  .pill-col {
+    display: none;
+  }
+}
 
 @media (max-width: 960px) {
   .hero-grid {

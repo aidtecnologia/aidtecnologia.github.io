@@ -1,8 +1,17 @@
 ---
 import { projects } from '../data/projects';
+import { heroStackColumns } from '../data/stack';
 import { site } from '../data/site';
 
 const years = new Date().getFullYear() - site.startYear;
+
+const columns = heroStackColumns.map((labels, columnIndex) =>
+  labels.map((label, rowIndex) => ({
+    label,
+    className: `pill--r${rowIndex}`,
+    side: columnIndex === 0 ? 'left' : 'right',
+  })),
+);
 ---
 
 <section class="hero" id="top">
@@ -25,27 +34,35 @@ const years = new Date().getFullYear() - site.startYear;
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="mock">
-          <div class="mock-bar">
-            <i></i><i></i><i></i>
-            <span>aidtecnologia</span>
-          </div>
-          <div class="mock-body">
-            <div class="mock-lines">
-              <span></span><span></span><span></span>
+        <div class="mock-shell">
+          <div class="mock">
+            <div class="mock-bar">
+              <i></i><i></i><i></i>
+              <span>aidtecnologia</span>
             </div>
-            <div class="mock-cta"></div>
-            <div class="mock-grid">
-              <div class="mock-card"></div>
-              <div class="mock-card"></div>
-              <div class="mock-card"></div>
-              <div class="mock-card"></div>
+            <div class="mock-body">
+              <div class="mock-lines">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="mock-cta"></div>
+              <div class="mock-grid">
+                <div class="mock-card"></div>
+                <div class="mock-card"></div>
+                <div class="mock-card"></div>
+                <div class="mock-card"></div>
+              </div>
             </div>
           </div>
+          {
+            columns.map((column) => (
+              <div class:list={['pill-col', `pill-col--${column[0].side}`]}>
+                {column.map((pill) => (
+                  <span class:list={['float-pill', pill.className]}>{pill.label}</span>
+                ))}
+              </div>
+            ))
+          }
         </div>
-        <span class="float-pill pill-a">Kotlin · Compose</span>
-        <span class="float-pill pill-b">React · Firebase</span>
-        <span class="float-pill pill-c">IA aplicada</span>
       </div>
     </div>
 
