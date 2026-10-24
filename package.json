@@ -1,0 +1,11 @@
+{
+  "name": "aidtecnologia",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix site run dev",
+    "build": "npm --prefix site run build",
+    "preview": "npm --prefix site run preview",
+    "check": "npm --prefix site run check",
+    "install:site": "npm --prefix site install"
+  }
+}
